@@ -3,6 +3,8 @@
 ## Description
 Where to Watch is a web application that allows users to search for movies and trailers, providing information about where to stream them online. The platform aggregates data from various sources to help users find their favorite films easily.
 
+#To explore the features of the "Where to Watch" website, visit https://iridescent-toffee-0dc7bd.netlify.app.
+
 ## Features
 - **Search Functionality**: Quickly find movies by title.
 - **Trailer Links**: Access trailers directly from the search results.
