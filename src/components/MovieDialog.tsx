@@ -8,6 +8,8 @@ import { Badge } from "@/components/ui/badge";
 import { CalendarDays, Clock, Star, Monitor } from "lucide-react";
 import { useState, useEffect } from "react";
 
+const TMDB_API_KEY = "cf34ec67e2254a274416a11c1a30ba82";
+
 interface MovieDialogProps {
   movie: any;
   isOpen: boolean;
