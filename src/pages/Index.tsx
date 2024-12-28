@@ -46,65 +46,55 @@ const Index = () => {
     enabled: search.length > 0,
   });
 
-  const { data: movieDetails } = useQuery({
-    queryKey: ["movie", selectedMovie?.id],
-    queryFn: async () => {
-      if (!selectedMovie?.id) return null;
-      const response = await fetch(
-        `${TMDB_API_URL}/movie/${selectedMovie.id}?api_key=${TMDB_API_KEY}`
-      );
-      return response.json();
-    },
-    enabled: !!selectedMovie?.id,
-  });
-
   return (
-    <div className="min-h-screen bg-moviebg text-white">
-      <div className="container py-12 space-y-12">
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            Movie Search
-          </h1>
-          <p className="text-lg text-gray-400">
-            Discover thousands of movies at your fingertips
-          </p>
-        </div>
-
-        <SearchBar value={search} onChange={setSearch} />
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-          {isLoading ? (
-            Array.from({ length: 10 }).map((_, i) => (
-              <div
-                key={i}
-                className="aspect-[2/3] rounded-lg bg-white/5 animate-pulse"
-              />
-            ))
-          ) : (
-            searchResults?.map((movie: Movie) => (
-              <MovieCard
-                key={movie.id}
-                title={movie.title}
-                posterPath={movie.poster_path}
-                releaseDate={movie.release_date}
-                voteAverage={movie.vote_average}
-                onClick={() => setSelectedMovie(movie)}
-              />
-            ))
-          )}
-        </div>
-
-        {!search && !searchResults?.length && (
-          <div className="text-center text-gray-400 py-12">
-            Start typing to search for movies
+    <div className="min-h-screen bg-[#121212]">
+      <div className="gradient-bg">
+        <div className="container py-24 space-y-12">
+          <div className="text-center space-y-4 animate-fade-in">
+            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 bg-clip-text text-transparent">
+              Discover Movies
+            </h1>
+            <p className="text-lg text-zinc-400">
+              Search through millions of movies in our database
+            </p>
           </div>
-        )}
 
-        <MovieDialog
-          movie={movieDetails}
-          isOpen={!!selectedMovie}
-          onClose={() => setSelectedMovie(null)}
-        />
+          <SearchBar value={search} onChange={setSearch} />
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            {isLoading ? (
+              Array.from({ length: 10 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="aspect-[2/3] rounded-lg bg-zinc-800/50 animate-pulse"
+                />
+              ))
+            ) : (
+              searchResults?.map((movie: Movie) => (
+                <MovieCard
+                  key={movie.id}
+                  title={movie.title}
+                  posterPath={movie.poster_path}
+                  releaseDate={movie.release_date}
+                  voteAverage={movie.vote_average}
+                  onClick={() => setSelectedMovie(movie)}
+                />
+              ))
+            )}
+          </div>
+
+          {!search && !searchResults?.length && (
+            <div className="text-center text-zinc-500 py-12">
+              Start typing to search for movies
+            </div>
+          )}
+
+          <MovieDialog
+            movie={selectedMovie}
+            isOpen={!!selectedMovie}
+            onClose={() => setSelectedMovie(null)}
+          />
+        </div>
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ export function MovieDialog({ movie, isOpen, onClose }: MovieDialogProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-3xl bg-moviebg text-white">
+      <DialogContent className="max-w-3xl bg-zinc-900 text-white border-zinc-800">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">{movie.title}</DialogTitle>
         </DialogHeader>
@@ -31,15 +31,18 @@ export function MovieDialog({ movie, isOpen, onClose }: MovieDialogProps) {
             />
           </div>
           <div className="space-y-4">
-            <p className="text-gray-300">{movie.overview}</p>
+            <p className="text-zinc-300">{movie.overview}</p>
             <div className="flex flex-wrap gap-2">
               {movie.genres?.map((genre: any) => (
-                <Badge key={genre.id} variant="secondary">
+                <Badge
+                  key={genre.id}
+                  className="bg-purple-500/20 text-purple-200 hover:bg-purple-500/30"
+                >
                   {genre.name}
                 </Badge>
               ))}
             </div>
-            <div className="flex flex-col gap-2 text-sm text-gray-300">
+            <div className="flex flex-col gap-2 text-sm text-zinc-400">
               <div className="flex items-center gap-2">
                 <CalendarDays className="w-4 h-4" />
                 <span>Release Date: {movie.release_date}</span>
