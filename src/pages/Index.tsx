@@ -5,7 +5,7 @@ import { MovieCard } from "@/components/MovieCard";
 import { MovieDialog } from "@/components/MovieDialog";
 import { useToast } from "@/components/ui/use-toast";
 
-const TMDB_API_KEY = "1234567890abcdef"; // Replace with actual API key
+const TMDB_API_KEY = "cf34ec67e2254a274416a11c1a30ba82";
 const TMDB_API_URL = "https://api.themoviedb.org/3";
 
 interface Movie {
